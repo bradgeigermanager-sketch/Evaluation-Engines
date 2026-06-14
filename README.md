@@ -15,3 +15,10 @@
 ├── /data
 │   └── entities.db           # SQLite/Relational database storage
 └── README.md                 # System manifest & documentation
+
+
+System Overview: Evaluation-Engines
+Objective: To maintain data and behavioral integrity via dual-engine analysis.
+Judgement Engine: Evaluates the Present Moment—performs real-time parity checks on logs, reports, and communications.
+Reputation Tracker: Evaluates the Long-Term Trend—maintains the reliability profile for every entity node in the Sovereign Information System.
+Integration: Engines communicate via the sis_api.json protocol.
