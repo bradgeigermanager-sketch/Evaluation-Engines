@@ -1,0 +1,36 @@
+{
+  "api_version": "1.0",
+  "system_components": {
+    "judgement_engine": {
+      "service": "comparison_routine",
+      "outputs": ["discrepancy_event", "parity_status", "variance_delta"],
+      "action": "trigger_reconciliation"
+    },
+    "reputation_tracker": {
+      "service": "reliability_scorer",
+      "inputs": ["discrepancy_event", "entity_reconciliation_response"],
+      "action": "update_reliability_score"
+    }
+  },
+  "event_bus": {
+    "on_variance_detected": {
+      "source": "judgement_engine",
+      "target": "reputation_tracker",
+      "data_payload": {
+        "entity_uid": "UUID",
+        "delta": "FLOAT",
+        "severity": "ENUM(LOW, MEDIUM, HIGH, ADVERSARIAL)"
+      }
+    },
+    "on_reconciliation_complete": {
+      "source": "reconciliation_protocol",
+      "target": "reputation_tracker",
+      "data_payload": {
+        "entity_uid": "UUID",
+        "resolution_status": "SUCCESS/FAILURE",
+        "integrity_adjustment": "FLOAT"
+      }
+    }
+  }
+}
+
